@@ -11,6 +11,29 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 export default class Map extends React.Component {
 
+    contructor(props) {
+       
+        this.state = {
+            latitude: 24.723456,
+            longitude: 46.70095
+        }
+    }
+            // Current location
+        componentDidMount = () => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    console.log(position.coords)
+                    this.setState({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    })
+                },
+                (error) => {
+                    console.log("Fel vid hämtning av position" + error.message)
+                }
+            )
+        }
+
     header = () =>{
         return(
             <div>
@@ -42,14 +65,14 @@ export default class Map extends React.Component {
     }
     map = () =>{
         return(
-            <div style={{backgroundColor: "pink" }}>
+            <div style={{backgroundColor: "pink", height: "80vh"}}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyBYrV501SwGTqexub8U6JbqIJ44cxGx5I4" }}
                 defaultCenter={{
                     lat: 10.99835602,
                     lng: 77.01502627
                 }}
-                defaultZoom={14}
+                defaultZoom={12}
             >
        
 
