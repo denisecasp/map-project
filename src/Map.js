@@ -9,10 +9,14 @@ import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
+
+
 export default class Map extends React.Component {
 
-    contructor(props) {
-       
+    
+
+    constructor(props) {
+       super();
         this.state = {
             latitude: 24.723456,
             longitude: 46.70095
@@ -73,6 +77,7 @@ export default class Map extends React.Component {
                     lng: 77.01502627
                 }}
                 defaultZoom={12}
+                center={{ lat: this.state.latitude, lng: this.state.longitude }}
             >
        
 
