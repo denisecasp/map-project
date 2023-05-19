@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import Map from './Map';
+import Restaurants from './Restaurants';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Testing testing</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' exact element={ <Map/> } />
+        <Route path='/restaurants/:restaurantsId' element={ <Restaurants/> } />
+      </Routes>
+    </Router>
   );
 }
 
