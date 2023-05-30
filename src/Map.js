@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 export default class Map extends React.Component {
@@ -19,7 +20,8 @@ export default class Map extends React.Component {
         super();
         this.state = {
             latitude: 24.723456,
-            longitude: 46.70095
+            longitude: 46.70095,
+            restaurants: []
         }
     }
             // Current location
@@ -30,6 +32,7 @@ export default class Map extends React.Component {
                     this.setState({
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
+                        restaurantsData
                     })
                 },
                 (error) => {
@@ -79,6 +82,17 @@ export default class Map extends React.Component {
                     lng: this.state.longitude 
                 }}
             >
+
+                {
+                    this.state.restaurants.map((restaurant) => {
+                        return (
+                            <LocationOnIcon 
+                            lat={restaurant.latitude}
+                            lng={restaurant.longitude}
+                            />
+                        )
+                    })
+                }
        
                 <PersonPinIcon color={"primary"}
                     lat={this.state.latitude}
@@ -97,3 +111,36 @@ export default class Map extends React.Component {
         )
     }
 }
+// Exempel data Restauranger
+let restaurantsData = [
+    {
+        id: "1",
+        name: "Restaurant 1 - Berlin",
+        latitude: 52.520007,
+        longitude: 13.404954
+    },
+    {
+        id: "2",
+        name: "Restaurant 2 - London",
+        latitude: 51.507351,
+        longitude: -0.127758
+    },
+    {
+        id: "3",
+        name: "Restaurant 3 - San Fransisco",
+        latitude: 37.774929,
+        longitude: -122.419416
+    },
+    {
+        id: "4",
+        name: "Restaurant 4 - Shanghai",
+        latitude: 31.230416,
+        longitude: 121.473701
+    },
+    {
+        id: "5",
+        name: "Restaurant 5 - Tokyo",
+        latitude: 35.689487,
+        longitude: 139.691706
+    },
+]
